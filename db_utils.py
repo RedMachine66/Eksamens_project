@@ -1,8 +1,19 @@
+# db_utils.py
+import sqlite3
 
 # SQLite with python docs: https://docs.python.org/3/library/sqlite3.html
 
-def email_exists(con, email)
 
-def check_password(con, email, password)
+def connect_to_db(db_path):
 
-def create_user(con, email, password, ) # Indsæt alle informationerne vi skal bruge til hver bruger i databasen.
+
+def close_db_connection(conn):
+
+
+def email_exists(conn, email):
+
+
+def check_password(conn, email, password):
+
+
+def create_user(conn, email, password):
