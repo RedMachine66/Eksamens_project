@@ -8,8 +8,7 @@ import sqlite3
 def connect_to_db(db_path):
     """Establish a connection to the SQLite database and return a cursor."""
     con = sqlite3.connect(db_path)  # Connects to the database file
-    cur = con.cursor()  # Creates a cursor object to execute SQL commands
-    return con, cur  # Returns both connection and cursor for use in other functions
+    return con
 
 
 def close_db_connection(conn):
