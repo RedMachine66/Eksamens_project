@@ -18,7 +18,7 @@ def close_db_connection(conn):
 def email_exists(conn, email):
     cur = conn.cursor()  # Get a cursor to execute SQL commands
     cur.execute("SELECT 1 FROM users WHERE email = ?", (email,)) # Check if email exists
-    return cur.fetchone() is not None is not None  # Returns True if email is found, False otherwise
+    return cur.fetchone() is not None  # Returns True if email is found, False otherwise
 
 def check_password(conn, email, password):
     """Check if the provided password matches the stored hash."""
@@ -28,18 +28,16 @@ def check_password(conn, email, password):
     
     if row:
         stored_password = row[0]  # Extract stored hash
-        hashed_password = (password.encode()).hexdigest()  # Hash input password
-        return stored_password == hashed_password  # Compare the stored hash with the input hash
+        return stored_password == password  # Compare the stored hash with the input hash
     return False  # Email not found
 
 
 def create_user(conn, email, password):
     """Create a new user with a hashed password."""
     if email_exists(conn, email):  # Check if the email is already registered
-        return "User already exists."
+        return False
 
-    hashed_password = (password.encode()).hexdigest()  # Hash the password
     cur = conn.cursor()
-    cur.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, hashed_password))
+    cur.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, password))
     conn.commit()  # Save changes to the database
-    return "User created successfully."
+    return True
