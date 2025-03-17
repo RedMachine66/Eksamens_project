@@ -15,7 +15,7 @@ def login(con, hashed_user_email):
         print("Incorrect password")
         return False
 
-def auth_create_account(con, hashed_user_email, tlf):
+def auth_create_account(con, hashed_user_email):
     print("Enter new password")
     new_hashed_user_password=auth_hash(input())
     print("Enter you telephone number")
