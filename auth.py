@@ -15,10 +15,12 @@ def login(con, hashed_user_email):
         print("Incorrect password")
         return False
 
-def auth_create_account(con, hashed_user_email):
+def auth_create_account(con, hashed_user_email, tlf):
     print("Enter new password")
     new_hashed_user_password=auth_hash(input())
-    return db_utils.create_user(con, hashed_user_email, new_hashed_user_password)
+    print("Enter you telephone number")
+    hashed_tlf = auth_hash(input())
+    return db_utils.create_user(con, hashed_user_email, new_hashed_user_password, hashed_tlf)
 
 def auth_hash(input):
     encoded_input=input.encode("utf-8")
@@ -33,7 +35,6 @@ def auth():
     while True:
         print("Please enter your email to log-in or sign-up.")
         hashed_user_email=auth_hash(input())
-        print(hashed_user_email)
         con=db_utils.connect_to_db(db_path)
         if db_utils.email_exists(con, hashed_user_email):
             while True:
