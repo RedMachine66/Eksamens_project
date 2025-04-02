@@ -1,42 +1,71 @@
 import auth, physics_calc, source_finder, sys, pyfiglet, time
-from rich.console import Console
+from termcolor import colored
 
-console = Console()
 
-banner = pyfiglet.Figlet(font='slant')
-print(banner.renderText('Dash Corp'))
-print("Welcome to student tools by Dashcorp!")
+banner = pyfiglet.Figlet(font="slant")
+print(colored(banner.renderText("Dash Corp"), "blue"))
+print(colored("Welcome to student tools by Dashcorp!", attrs=["bold"]))
 print("-----")
 time.sleep(0.8)
+
 authorized=auth.auth()
 if authorized == False:
-    print("Access denied")
+    print(colored("Access denied", "red"))
     time.sleep(0.4)
     sys.exit("Exiting program")
+
 time.sleep(0.5)
+
 print("-----")
-print("Welcome to Dashcorp!")
+print(colored("Welcome to Dashcorp!", "green"))
 
 while True:
     print("-----")
-    print("Enter 'c' to use the physics calculator")
-    print("Enter 's' to use the source finder")
-    print("Enter 'x' to close the program")
+    print(colored("Dashboard", "blue", attrs=["bold"]))
+    print("")
+    print("Enter " + colored("'c'", "green") + " to use the physics calculator")
+    print("Enter " + colored("'s'", "green") + " to use the source finder")
+    print("Enter " + colored("'x'", "green") + " to close the program")
     print("-----")
-    userinput=input()
-    if userinput == 'x':
+    user_choice=input()
+    if user_choice == 'x':
         sys.exit("Exiting program")
-    if userinput == 'c':
+
+    if user_choice == 'c':
+        print("-----")
         print("This calculator helps you calculate the movment of a projectile.")
-        time.sleep(1)
+        print("To use this calculator you need the following information: start speed and angle.")
+        print("Press 'Enter' to proceed. Enter 'n' to go back")
+        init_calc_choice = input()
+        if init_calc_choice == 'n':
+            continue
+        else:
+            while True:
+                physics_calc.get_input_and_calculate()
+                print("-----")
+                print("Enter 'd' to go to dashboard")
+                print("Press 'Enter' to calculate again")
+                calc_choice=input()
+                if calc_choice == 'd':
+                    break
+
+    if user_choice == 's':
+        
         while True:
-            physics_calc.get_input_and_calculate()
+            print("What subject would you like to find sources for?")
+            subject = input()
+            print("What would you like to find sources about?")
+            search_area = input()
+            print("Finding sources")
+            prompt = "subject: " + subject + ", search area: " + search_area
+            print(source_finder.get_gemini_response(prompt))
+            print("-----")
+
             print("Enter 'd' to go to dashboard")
-            print("Press 'Enter' to calculate again")
-            user_input_calc=input()
-            if user_input_calc == 'd':
+            print("Press 'Enter' to find more sources")
+            calc_choice=input()
+            if calc_choice == 'd':
                 break
-    if userinput == 's':
-        print("The source finder is not implemented yet")
-    if userinput not in ('x','c','s'):
+
+    if user_choice not in ('x','c','s'):
         print("Enter a valid input")
