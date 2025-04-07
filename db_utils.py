@@ -32,12 +32,12 @@ def check_password(conn, email, password):
     return False  # Email not found
 
 
-def create_user(conn, email, password, tlf):
+def create_user(conn, email, password):
     """Create a new user with email a hashed password and phone number."""
     if email_exists(conn, email):  # Check if the email is already registered
         return False
 
     cur = conn.cursor()
-    cur.execute("INSERT INTO users (email, password, tlf) VALUES (?, ?, ?)", (email, password, tlf))
+    cur.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, password))
     conn.commit()  # Save changes to the database
     return True
