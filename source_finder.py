@@ -32,8 +32,8 @@ def get_gemini_response_with_search(user_message, system_prompt_path="source_fin
     for candidate in response.candidates:
         return candidate.content.parts[0].text
 
-# Eksempel på brug
-print(get_gemini_response_with_search("hvornår er der næste solformørkelse i Danmark?"))
+# # Eksempel på brug
+# print(get_gemini_response_with_search("hvornår er der næste solformørkelse i Danmark?"))
 
 
 
