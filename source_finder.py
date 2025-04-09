@@ -26,7 +26,6 @@ def get_gemini_response_with_search(user_message, system_prompt_path="source_fin
             system_instruction=system_prompt,
             tools=[google_search_tool],
             response_modalities=["TEXT"],
-            max_output_tokens=500
         )
     )
     for candidate in response.candidates:

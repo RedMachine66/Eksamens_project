@@ -33,18 +33,21 @@ while True:
 
     if user_choice == 'c':
         print("-----")
-        print("This calculator helps you calculate the movment of a projectile.")
+        print("This calculator helps you calculate the movement of a projectile.")
+        time.sleep(0.8)
         print("To use this calculator you need the following information: start speed and angle.")
-        print("Press 'Enter' to proceed. Enter 'n' to go back")
+        time.sleep(0.8)
+        print("Press " + colored("'Enter'", "green") + " to proceed. Enter " + colored("'n'", "green") + " to go back")
         init_calc_choice = input()
         if init_calc_choice == 'n':
             continue
         else:
             while True:
                 physics_calc.get_input_and_calculate()
+                time.sleep(0.8)
                 print("-----")
-                print("Enter 'd' to go to dashboard")
-                print("Press 'Enter' to calculate again")
+                print("Enter " + colored("'d'", "green") + " to go to dashboard")
+                print("Press " + colored("'Enter'", "green") + " to calculate again")
                 calc_choice=input()
                 if calc_choice == 'd':
                     break
@@ -52,17 +55,21 @@ while True:
     if user_choice == 's':
         
         while True:
-            print("What subject would you like to find sources for?")
+            print("-----")
+            print("Which field of study would you like to find sources for?")
             subject = input()
+            print("-----")
             print("What would you like to find sources about?")
             search_area = input()
-            print("Finding sources")
+            print("-----")
+            print(colored("Finding sources", "blue"))
+            print("-----")
             prompt = "subject: " + subject + ", search area: " + search_area
-            print(source_finder.get_gemini_response(prompt))
+            print(source_finder.get_gemini_response_with_search(prompt))
             print("-----")
 
-            print("Enter 'd' to go to dashboard")
-            print("Press 'Enter' to find more sources")
+            print("Enter " + colored("'d'", "green") + " to go to dashboard")
+            print("Press " + colored("'Enter'", "green") + " to find more sources")
             calc_choice=input()
             if calc_choice == 'd':
                 break
