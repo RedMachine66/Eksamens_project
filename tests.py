@@ -1,3 +1,3 @@
-import fysik_beregner, auth, db_utils, source_finder, main
+import physics_calc, auth, db_utils, source_finder, main
 
-fysik_beregner.calculate_projetile(-100,112)
+physics_calc.calculate_projetile(-100,112)

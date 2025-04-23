@@ -44,4 +44,3 @@ def get_input_and_calculate():
 
     # Call the function
     calculate_projectile(v0, angle)
-
