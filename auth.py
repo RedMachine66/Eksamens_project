@@ -25,7 +25,7 @@ def auth_create_account(con, hashed_user_email):
         if len(new_password) >= MINIMUM_PASSWORD_LENGTH:
             new_hashed_user_password=hash_string(new_password)
             return db_utils.create_user(con, hashed_user_email, new_hashed_user_password)
-        print(colored("Password must be over " + MINIMUM_PASSWORD_LENGTH + " characters", "yellow"))
+        print(colored("Password must be over " + str(MINIMUM_PASSWORD_LENGTH) + " characters", "yellow"))
 
 def hash_string(data):
     encoded_input=data.encode("utf-8")
